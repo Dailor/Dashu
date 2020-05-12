@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% set a_buttons = [("Сделать", "make_work")] %}
+    <div class="company">
+        <h1 style="margin-bottom: 2%">Работы</h1>
+        <div style="width: 20%">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            <span>{{ message }}</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        {% if director_is %}
+            <table>
+                <tr>
+                    <th class="first_col">Работа</th>
+                    <th class="second_col">Описание</th>
+                    <th class="third_col">Действия</th>
+                </tr>
+                {% for work, desc,id  in table_data %}
+                    <tr>
+                        <td>{{ work }}</td>
+                        <td>{{ desc }}</td>
+                        <td>
+                            {% for title_url, url in a_buttons %}
+                                <a class="btn btn_in_table" href="/{{ url }}/{{ id }}">{{ title_url }}</a>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <span class="alert alert-warning">У вас еще нет директора!</span>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

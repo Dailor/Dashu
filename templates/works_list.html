@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="company">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        <span>{{ message }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h1 style="margin-bottom: 2%">Виды работ</h1>
+        <table>
+            <tr>
+                <th class="first_col">ID</th>
+                <th class="second_col">Работа</th>
+                <th class="third_col">Описание</th>
+                <th class="fifth_col">Действия</th>
+            </tr>
+            {% for work in works %}
+                <tr>
+                    <td>{{ work.id }}</td>
+                    <td>{{ work.work }}</td>
+                    <td>{{ work.description }}</td>
+                    <td><a href="/delete_work/{{ work.id }}" class="btn" style="margin-bottom: 3%">Удалить</a>
+                        <a href="/change_work/{{ work.id }}" class="btn">Изменить</a></td>
+
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

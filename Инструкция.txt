@@ -1,0 +1,2 @@
+При деплое в файле /alembic/env.py
+sys.path.insert надо поменять

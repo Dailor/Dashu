@@ -1,0 +1,186 @@
+.nav-wrapper {
+    background-color: cornflowerblue;
+}
+
+.brand-logo {
+    margin-left: 10px;
+}
+
+.nav_authorization {
+    font-size: 27px;
+}
+
+.nav_functions {
+    font-size: 24px;
+}
+
+.brand-logo {
+    background-image: url("/img/logo.png");
+}
+
+.form_class {
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.form_class .block_field label {
+    font-size: 17px;
+}
+
+.login_form {
+    margin-top: 12%;
+    margin-left: 42%;
+    margin-right: 42%;
+}
+
+.form_class label {
+    font-size: 14px;
+}
+
+.block_field {
+    margin-top: 10px;
+}
+
+input[type="checkbox"] {
+    background-color: #eee;
+    width: 15px;
+    height: 15px;
+}
+
+.dropdown-content {
+    width: max-content !important;
+    height: auto !important;
+}
+
+a {
+    text-decoration: none; /* Отменяем подчеркивание у ссылки */
+}
+
+a:hover {
+    text-decoration: none; /* Добавляем подчеркивание при наведении курсора на ссылку */
+    color: #d49dd9;
+}
+
+
+.wrapper {
+    overflow: hidden;
+    position: fixed;
+    top: 10%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-size: 0;
+    line-height: 0;
+}
+
+.item {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.item:after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.error_picture {
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+    width: 30%;
+}
+
+.container {
+    margin-left: 0;
+    margin-top: 1%;
+}
+
+.container .img {
+    width: 256px;
+    height: 256px;
+}
+
+.details li {
+    list-style: none;
+}
+
+.container li {
+    margin-bottom: 10px;
+
+}
+
+.company {
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.company .btn {
+    margin-right: 2%;
+}
+
+.company table {
+    margin-top: 1%;
+    width: 95%;
+}
+
+.company td, th {
+    padding: 3px; /* Поля вокруг содержимого таблицы */
+    border: 1px solid black; /* Параметры рамки */
+    font-size: 20px;
+    text-align: center;
+}
+
+.company .first_col {
+
+}
+
+.company .second_col {
+    width: 400px;
+
+}
+
+.company .third_col {
+
+}
+
+.company .fourth_col {
+
+
+}
+
+.company .fifth_col{
+    width: 200px;
+}
+
+.company .sixth_col{
+    width: 210px;
+}
+
+.add_work_container{
+    margin-top: 12.5%;
+}
+
+.appoint_work_container{
+    margin-top: 12.5%;
+}
+
+.btn_in_table{
+    margin-bottom: 3%;
+}
+
+.result_conteiner{
+    margin-left: 12.5%;
+    margin-top: 12.5%;
+    width: 30%;
+}
+
+.result_conteiner span{
+    font-size: 22px;
+}

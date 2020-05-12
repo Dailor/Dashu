@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        {{ form.csrf_token }}
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form_class {{ container_name }}">
+            <h3>{{ action_title }}</h3>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            <span>{{ message }}</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% for field in form if field.name != 'csrf_token' %}
+                <div class="block_field">
+                    {% if 'hidden' not in field.render_kw %}
+                        {% if field.name != "submit" %}
+                            {{ field.label() }}
+                        {% endif %}
+                        {{ field() }}
+                        {% for error in field.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+{% endblock %}

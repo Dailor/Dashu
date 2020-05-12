@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        {% block header_page %}
+            <h1>Биржа труда</h1>
+        {% endblock %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        <span>{{ message }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% for user in users %}
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+                        <img src="/image/{{ user.id }}"
+                             alt="stack photo" class="img">
+                    </div>
+                    <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+                        <div class="container" style="border-bottom:1px solid black">
+                            <h2>{{ user.name|title }} {{ user.surname|title }}</h2>
+                        </div>
+                        <hr>
+                        <ul class="container details">
+                            <li><p><span class="glyphicon glyphicon-earphone one"
+                                         style="width:50px;"></span>{{ user.about_me }}
+                            </p></li>
+                        </ul>
+
+                        {% for text, url, type_btn in buttons_a %}
+                            <a href="/{{ url }}/{{ user.id }}" class="btn btn-{{ type_btn }}">{{ text }}</a>
+                        {% endfor %}
+                        {#                        <a href="/chat/{{ user.id }}" class="btn btn-primary">Чат</a>#}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

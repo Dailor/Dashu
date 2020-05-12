@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="company">
+        <h1 style="margin-bottom: 2%">Работы</h1>
+        <div style="width: 20%">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            <span>{{ message }}</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <a href="/list_work" class="btn">Лист работ</a>
+        <a href="/add_work" class="btn">Добавить работу</a>
+        <a href="/appoint_work" class="btn">Назначить работу</a>
+        <a href="/workers_list" class="btn">Список работников</a>
+
+        <table>
+            <tr>
+                <th class="first_col">ID</th>
+                <th class="second_col">Выполняет</th>
+                <th class="third_col">Работа</th>
+                <th class="fourth_col">Дата назначения</th>
+                <th class="fourth_col">Дата окончания</th>
+                <th class="fifth_col">Статус</th>
+                <th class="sixth_col">Действия</th>
+            </tr>
+            {% for id, worker_full_name, description,data_start, data_end ,status, a_buttons in table_data %}
+                <tr>
+                    <td class="first_col">{{ id }}</td>
+                    <td class="second_col">{{ worker_full_name }}</td>
+                    <td class="third_col">{{ description }}</td>
+                    <td class="fourth_col">{{ data_start }}</td>
+                    <td class="fourth_col">{{ data_end }}</td>
+                    <td class="fifth_col">{{ status }}</td>
+                    <td class="sixth_col">
+                        {% for title_url, url in a_buttons %}
+                            <a class="btn btn_in_table" href="/{{ url }}/{{ id }}">{{ title_url }}</a>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

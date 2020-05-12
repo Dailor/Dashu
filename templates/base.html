@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+
+    <!--Import JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='/css/materialize.css' ) }}"
+          media="screen,projection"/>
+
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <!--My CSS-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css' ) }}">
+
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="/" class="brand-logo">Work Helper</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {% if current_user.is_authenticated %}
+                {% if current_user.account_type == 2 %}
+                    {#                    <li><a class="nav_functions" href="/chats">Чаты</a></li>#}
+                    <li><a class="nav_functions" href="/company">Работы</a></li>
+                    <li><a class="nav_functions" href="/hire_workers">Биржа работников!</a></li>
+                {% else %}
+                    <li><a class="nav_functions" href="/works">Работы</a></li>
+                    <li><a class="nav_functions" href="/invites_box">Приглашения</a></li>
+                {% endif %}
+                <li><span class="nav_authorization">Здравствуйте {{ current_user.name|title }}!</span></li>
+                <li><a class="nav_authorization dropdown-trigger" href="#!" data-target="user_func">Действия<i
+                        class="material-icons right">arrow_drop_down</i></a></li>
+                <ul id="user_func" class="dropdown-content">
+                    <li><a class="nav_authorization" href="/logout">Выход</a></li>
+                    <li><a class="nav_authorization" href="/settings">Настройки</a></li>
+                </ul>
+            {% else %}
+                <li><a class="nav_authorization" href="/register">Зарегистрироваться</a></li>
+                <li><a class="nav_authorization" href="/login">Войти</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+{% block content %}
+{% endblock %}
+<script type="text/javascript" src="{{ url_for('static', filename='/js/materialize.js' ) }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='/js/main.js' ) }}"></script>
+</body>
+</html>
