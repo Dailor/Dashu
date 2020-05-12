@@ -123,6 +123,24 @@ def register():
     session = db_session.create_session()
     form = RegisterForm()
     form.account_type.choices = [(m.id, m.name) for m in session.query(AccountType).all() if m.id != 1]
+    try:
+        form.account_type.render_kw['disabled'] = 'disabled'
+        form.password.render_kw = {**form.about_me.render_kw, 'disabled': 'disabled', 'hidden': 'hidden'}
+        form.password_repeat.render_kw = {**form.about_me.render_kw, 'disabled': 'disabled', 'hidden': 'hidden'}
+        form.photo.render_kw = {**form.about_me.render_kw, 'disabled': 'disabled', 'hidden': 'hidden'}
+
+        form.account_type.render_kw.pop('disabled')
+
+        form.password.render_kw.pop('disabled')
+        form.password.render_kw.pop('hidden')
+
+        form.password_repeat.render_kw.pop('disabled')
+        form.password_repeat.render_kw.pop('hidden')
+
+        form.photo.render_kw.pop('disabled')
+        form.photo.render_kw.pop('hidden')
+    except:
+        pass
     if form.is_submitted():
         msg_type, status = user_registration(form)
         flash(status, msg_type)
@@ -143,6 +161,7 @@ def settings_user():
     form.password.render_kw = {**form.about_me.render_kw, 'disabled': 'disabled', 'hidden': 'hidden'}
     form.password_repeat.render_kw = {**form.about_me.render_kw, 'disabled': 'disabled', 'hidden': 'hidden'}
     form.photo.render_kw = {**form.about_me.render_kw, 'disabled': 'disabled', 'hidden': 'hidden'}
+
     form.account_type.choices = [
         [current_user.account_type, session.query(AccountType).get(current_user.account_type).name]]
 
@@ -235,7 +254,7 @@ def get_image(id):
 
 
 def add_some_data():
-    #add_help_types()
+    # add_help_types()
     pass
 
 
