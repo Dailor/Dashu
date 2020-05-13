@@ -227,7 +227,8 @@ def workers_list():
     workers = session.query(Worker).filter(Worker.director_id == current_user.id)
 
     user_workers = [worker.user for worker in workers]
-    buttons_a = [('Уволить', 'to_dismiss', 'danger')]
+    # buttons_a = [('Уволить', 'to_dismiss', 'danger')]
+    buttons_a = []
 
     return render_template('workers_list.html', users=user_workers, buttons_a=buttons_a)
 
@@ -286,6 +287,7 @@ def delete_appoint_work(worklist_id):
 
     flash("Назначенная работа удалена", 'success')
     return redirect('/')
+
 
 @blueprint.route("/get_result_appoint_work/<int:work_list_id>")
 def get_result_work(work_list_id):
