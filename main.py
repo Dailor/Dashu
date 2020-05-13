@@ -268,7 +268,7 @@ def main():
     api.add_resource(WorksListAPI.WorkListAPI, '/api/works_list')
     api.add_resource(UserAPI.UsersList, '/api/users')
 
-    socketio.run(app=app, debug=True)
+    app.run()
 
 
 if __name__ == '__main__':
