@@ -1,5 +1,4 @@
 import datetime
-from flask_socketio import SocketIO
 from flask import Flask, render_template, redirect, request, url_for, flash, session, Response, abort
 from flask_login import LoginManager, login_required, logout_user, login_user, current_user
 from data import db_session
@@ -19,7 +18,7 @@ api = Api(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-socketio = SocketIO(app)
+
 
 
 @login_manager.user_loader
